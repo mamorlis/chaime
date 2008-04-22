@@ -20,7 +20,7 @@ class Node:
 
 class Decoder:
   def __init__(self, slm, kkm, dict):
-    self.unk_cost = -math.log(1.0 / sys.maxint) * 2 ** 12
+    self.unk_cost = int(math.log(sys.maxint) * 2 ** 12)
     self.slm = slm
     self.kkm = kkm
     self.dict = dict
