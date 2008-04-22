@@ -1,0 +1,30 @@
+README for ChaIME
+
+* prerequisite
+
+- Python
+- TokyoCabinet
+  http://tokyocabinet.sourceforge.net/
+- pytc
+  http://coderepos.org/share/wiki/PyTC/
+
+* usage
+
+mamoru-k@ash% ./chaime.py
+にほんご
+日本語
+^D
+mamoru-k@ash% ./chaime.py -n 3
+きしゃ
+記者
+汽車
+貴社
+^D
+mamoru-k@ash% ./chaime.py -w
+きしゃのきしゃ
+貴社 の 記者
+^D
+
+* configuration file
+
+See chaime.ini for detail.
