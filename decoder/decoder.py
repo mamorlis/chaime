@@ -30,6 +30,7 @@ class Decoder:
     bos = Node(word="<S>")
     nodes = { 0:{ "<S>":bos } }
     usentence = sentence.decode('utf-8')
+
     for i in range(len(usentence)):
       for j in range(i + 1, len(usentence) + 1):
         read = usentence[i:j].encode('utf-8')
@@ -38,8 +39,8 @@ class Decoder:
           cur_node = Node(length=j-i, endpos=j, word=word)
           if nodes.has_key(i):
             cost_min = sys.maxint
+            kkm_cost = self.kkm.get_cost(word, read)
             for (prev_word, prev_node) in nodes[i].iteritems():
-              kkm_cost = self.kkm.get_cost(word, read)
               if kkm_cost == -1:   # unknown word
                 cur_cost = self.unk_cost * cur_node.length
               else:
