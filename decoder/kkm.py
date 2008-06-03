@@ -13,10 +13,9 @@ class KKM:
   def get_cost(self, word, read):
     """Looks up probability of a given word"""
     if self.dict.has_key(word):
-      katakana = hira2kata(read)
       for cand_cost in self.dict.getlist(word):
         cand, cost = cand_cost.split()
-        if cand == katakana:
+        if cand == read:
           return int(cost)
     # not found
     return -1
