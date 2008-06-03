@@ -15,7 +15,7 @@ def hira2kata(hira):
 
 def hiragana_value(x):
   x_num = ord(x)
-  if 0x30A1 <= x_num <= 0x30FF:
+  if 0x30A1 <= x_num <= 0x30F6 or 0x30FD <= x_num <= 0x30FE:
     return unichr(ord(x) - 0x60)
   else:
     return x

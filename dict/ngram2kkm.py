@@ -24,13 +24,11 @@ def main():
         partial.append("EOS\n")
         m = t.parseToNode("\n".join(partial))
         while m:
-          try:
-            reading = m.feature.split(",")[7]
+          csv = m.feature.split(",")
+          if len(csv) >= 8:
+            reading = csv[7]
             if m.surface != '' and reading != '*':
               kkm_table[(m.surface, reading)] = freq
-          except IndexError:
-            # mecab doesn't output to some words
-            pass
           m = m.next
       sys.stderr.write("Read %s\n" % (f))
     except IOError, e:
