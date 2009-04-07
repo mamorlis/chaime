@@ -7,9 +7,15 @@ import pytc
 
 class SLM:
   """Statistical Language Modeling"""
-  def __init__(self, slm):
-    self.bigram = pytc.BDB(slm, pytc.BDBOREADER)
+  def __init__(self, unigram, bigram_filename):
+    if bigram_filename.endswith("tch"):
+      self.bigram = pytc.HDB(bigram_filename, pytc.HDBOREADER)
+    else:
+      self.bigram = pytc.BDB(bigram_filename, pytc.BDBOREADER)
     self.bigram_cache = {}
+    self.unigram = pytc.BDB(unigram, pytc.BDBOREADER)
+    self.unigram_cache = {}
+    self.unknown_cost = int(math.log(sys.maxint) * 2 ** 12)
 
   def get_bigram_cost(self, cur_word, prev_word):
     """Returns an absolute value of logarithm of a bigram probability"""
@@ -28,4 +34,17 @@ class SLM:
       self.bigram_cache[lunk] = int(self.bigram[lunk]) * len(prev_word)
       return self.bigram_cache[lunk]
     else:
-      return sys.maxint
+      #self.bigram_cache[key] = int(self.bigram['<UNK> <UNK>']) \
+      #                       * (len(cur_word) + len(prev_word))
+      #return self.bigram_cache[key]
+      return self.unknown_cost
+
+  def get_unigram_cost(self, word):
+    """Returns the cost of a given word"""
+    if not self.unigram_cache.has_key(word):
+      if self.unigram.has_key(word):
+        self.unigram_cache[word] = int(self.unigram[word])
+      else:
+        #self.unigram_cache[word] = int(self.unigram['<UNK>']) * len(word)
+        return self.unknown_cost
+    return self.unigram_cache[word]

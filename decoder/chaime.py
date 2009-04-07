@@ -11,7 +11,8 @@ from optparse import OptionParser
 class ChaIME:
   """Term-based Yet Another Input Method Editor"""
   def __init__(self, config):
-    self.slm     = slm.SLM(config.get('dict', 'slm'))
+    self.slm     = slm.SLM(config.get('dict', 'unigram'),
+                           config.get('dict', 'bigram'))
     self.kkm     = kkm.KKM(config.get('dict', 'kkm'))
     self.dict    = dict.JDIC(config.get('dict', 'word'))
     self.decoder = decoder.Decoder(self.slm, self.kkm, self.dict)

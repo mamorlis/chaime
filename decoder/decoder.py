@@ -24,6 +24,7 @@ class Decoder:
     self.slm = slm
     self.kkm = kkm
     self.dict = dict
+    self.alpha  = 0.9 # linear interpolation, how much you trust bigram
 
   def forward_search(self, sentence):
     """Returns DP path"""
@@ -44,7 +45,8 @@ class Decoder:
               if kkm_cost == -1:   # unknown word
                 cur_cost = self.unk_cost * cur_node.length
               else:
-                cur_cost = self.slm.get_bigram_cost(word, prev_word) \
+                cur_cost = self.alpha * self.slm.get_bigram_cost(word, prev_word) \
+                         + (1 - self.alpha) * self.slm.get_unigram_cost(word) \
                          + kkm_cost
               cost = prev_node.cost + cur_cost
               if cost_min > cost:
@@ -102,9 +104,10 @@ class Decoder:
             break
       # backward probability estimation
       for backward_node in nodes[cur_node.endpos - cur_node.length].values():
-        path_cost = self.slm.get_bigram_cost(cur_node.word,
+        path_cost = self.alpha * self.slm.get_bigram_cost(cur_node.word,
                                              backward_node.word)
         backward_node.gn = path_cost + cur_node.gn
-        backward_node.fn = path_cost + cur_node.gn + backward_node.cost
+        backward_node.fn = path_cost + cur_node.gn + backward_node.cost \
+             + (1 - self.alpha) * self.slm.get_unigram_cost(backward_node.word)
         backward_node.next = cur_node
         open_list.put((backward_node.fn, backward_node))
