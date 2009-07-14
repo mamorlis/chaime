@@ -3,7 +3,10 @@
 
 from hira2kata import hira2kata
 import pytc
-import sets
+try:
+  set
+except NameError:
+  from sets import Set as set
 
 class JDIC():
   """Looks up a dictionary"""

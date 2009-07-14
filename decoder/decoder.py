@@ -3,7 +3,6 @@
 
 import sys
 import math
-import sets
 
 class Node:
   def __init__(self, length=0, endpos=0, cost=0, word=''):
