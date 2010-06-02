@@ -3,7 +3,7 @@ mecab -Ochasen mai*
 
 # dictionary
 python naist-jdic2tcb.py < naist-jdic.csv > naist-jdic.tsv
-tcbmgr importtsv naist-jdic.tcb naist-jdic.tsv
+tcbmgr importtsv unigram.tcb naist-jdic.tsv
 
 # corpus
 python make_bigram_logp.py -u 1gm-0000.gz 2gm-*.gz > bigram.tsv
@@ -13,3 +13,4 @@ tcbmgr importtsv bigram.tcb bigram.tsv
 # translation model
 python mle_kkctable.py < mai*.txt > trans.tbl
 python make_trans_logp.py < trans.tbl > trans.ssv
+tcbmgr importtsv trans.tcb kkm.ssv
