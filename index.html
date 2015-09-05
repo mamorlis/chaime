@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>ChaIME by mamorlis</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">ChaIME</h1>
+        <p class="header">ChaIME -- Term-based Yet Another Japanese Input Method Editor</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/mamorlis/chaime/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/mamorlis/chaime/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/mamorlis/chaime">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/mamorlis">mamorlis</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a id="chaime----term-based-yet-another-japanese-input-method-editor" class="anchor" href="#chaime----term-based-yet-another-japanese-input-method-editor" aria-hidden="true"><span class="octicon octicon-link"></span></a>ChaIME -- Term-based Yet Another Japanese Input Method Editor</h1>
+
+<p>ChaIME is a Japanese input method editor based on Anthy. It aims at sophisticated unknown word detection, community-based development of dictionaries, and application of generalized language model.
+Introduction</p>
+
+<p>In recent years, the expansion of WWW allows common users to obtain large amount of text data with little effort. People get more and more used to use computers to write documents. Compared to old word processing era, the accuracy of commercial Japanese Input Method Editors (IME) become acceptable, and one can type messages in Japanese without so much stress these days.</p>
+
+<p>Contrary, open source Operating Systems such as Linux and FreeBSD stick on using outdated IMEs such as Canna and Wnn. It was only recently that high accurate free and open source IME called Anthy came into existence. Anthy has been widely used as default Japanese IME in many modern distributions, including Ubuntu, SUSE and Mandriva.</p>
+
+<p>Anthy first introduced statistical language model in 2005, and then (maximum entropy-based) discriminative conversion model in 2006. However, it is based on the dictionary called cannadic, which is maintained as part of Canna, and there are many parameters and resources that need hand-tuning. The requirement of human intervention makes development of Anthy hard to maintain.</p>
+
+<p>To mitigate the problem, we propose a novel Japanese IME called ChaIME (pronounced as "chime"). It is based on statistical model and can estimate co-occurrence parameters automatically. It also make use of gigantic corpora extracted from the Web to develop linguistic knowledge-free IME.</p>
+
+<h2>
+<a id="open-issue" class="anchor" href="#open-issue" aria-hidden="true"><span class="octicon octicon-link"></span></a>Open Issue</h2>
+
+<ul>
+<li>Slow translation (can be sped up by coverting system dictionaries into DFA)</li>
+<li>Distribution of the system including its language model (Google Japanese N-gram data cannot be distributed itself)</li>
+<li>Port to other platforms (SCIM, uim, Emacs) </li>
+</ul>
+
+<h2>
+<a id="acknowledgement" class="anchor" href="#acknowledgement" aria-hidden="true"><span class="octicon octicon-link"></span></a>Acknowledgement</h2>
+
+<p>This IME is partly supported by the Creative and International Competitiveness Project 2007, Nara Institute of Science and Technology, Japan.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
